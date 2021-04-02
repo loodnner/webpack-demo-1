@@ -1,6 +1,14 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin"); //installed via npm
 const path = require("path");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const base = require("./webpack.config.base.js");
+
 module.exports = {
+  ...base,
+  devtool: "inline-source-map",
+  devServer: {
+    contentBase: "./dist",
+  },
   module: {
     rules: [
       {
@@ -10,11 +18,4 @@ module.exports = {
     ],
   },
   mode: "development",
-  entry: "./src/index.js",
-  output: {
-    filename: "index.[contenthash].js",
-  },
-  plugins: [
-    new HtmlWebpackPlugin({ title: "halo", template: "src/assets/index.html" }),
-  ],
 };
